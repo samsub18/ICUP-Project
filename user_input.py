@@ -119,4 +119,6 @@ def info_get():
 tk.Button(frame,text='SUBMIT',command=info_get).grid(row=16,column=1,sticky='W')
 tk.Button(frame,text='QUIT',command=master.quit).grid(row=16,column=1,sticky='E')
 
+#When you click the SUBMIT button all the info gets stored in a dictionary called user_info
+
 master.mainloop()
