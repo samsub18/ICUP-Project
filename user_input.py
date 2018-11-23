@@ -130,7 +130,7 @@ tk.Button(frame,text='QUIT',command=master.quit,font=('Arial',13)).grid(row=16,c
 
 #-----------Creative Stuff-----------#
 img= ImageTk.PhotoImage(Image.open('logo_final.png'))
-res=tk.Label(master,image=img,width=850,height=500)
+res=tk.Label(master,image=img,width=850,height=800)
 res.grid(row=0,column=25,padx=2,pady=1,sticky="N")
 #---------------------------------------------#
 
