@@ -1,8 +1,24 @@
 import tkinter as tk
 from findandreplace import *
-from PIL import ImageTk, Image  # Python Image Library
+from PIL import ImageTk, Image
 
-#------ Setting up the screen------------
+#---------FullScreenApp---------#
+class FullScreenApp(object):
+    def __init__(self, master, **kwargs):
+        self.master=master
+        pad=3
+        self._geom='200x200+0+0'
+        master.geometry("{0}x{1}+0+0".format(
+            master.winfo_screenwidth()-pad, master.winfo_screenheight()-pad))
+        master.bind('<Escape>',self.toggle_geom)            
+    def toggle_geom(self,event):
+        geom=self.master.winfo_geometry()
+        print(geom,self._geom)
+        self.master.geometry(self._geom)
+        self._geom=geom
+#----------------------------------#
+
+#------ Setting up the screen------------#
 master = tk.Tk()
 master.geometry('1000x1000+530+300')
 master.configure(background='gray')
@@ -29,7 +45,7 @@ v7.set(8)
 #For creating multiple checkboxes
 languages=[('Python',v1),('C++',v2),('Java',v3),('JS',v4),('Ruby',v5),('NodeJs',v6),('Machine Learning',v7)]
 
-#-----------------------------Creation of Scrollar-------------------------
+#-----------------------------Creation of Scrollar-------------------------#
 
 # --- create canvas with scrollbar ---
 def on_configure(event):
@@ -121,19 +137,36 @@ def info_get():
     user_info['XXXPROFESSIONALEXPERIENCEXXX'] = pro_exp.get('1.0', 'end-1c')
 
 
+    return master.destroy()
 
-
-#--------Creating buttons for submit and quit--------
+#--------Creating buttons for submit and quit--------#
 
 tk.Button(frame,text='SUBMIT',command=info_get,font=('Arial',13)).grid(row=16,column=1,sticky='W')
-tk.Button(frame,text='QUIT',command=master.quit,font=('Arial',13)).grid(row=16,column=1,sticky='E')
+tk.Button(frame,text='QUIT',command=master.destroy,font=('Arial',13)).grid(row=16,column=1,sticky='S')
+
+#------------------------------------------------------#
+
+
+#-----------Creating The Credits Button------------------------#
+
+def credits():
+    import tkinter as tk
+    root=tk.Tk()
+    tk.Label(root,text="Created By : \n1. Naveen: Linking Of Python Code and Word Doc \n2. Sameer: Graphical User Interface \n3. Sanjith: Combining Of code",padx=20,pady=10,bg='gray',font=('Helvetica',16)).grid(row=1)
+    root.mainloop()
+    
+b = tk.Button(frame, text="CREDITS", command=credits,font=('Arial',13))
+b.grid(row=16,column=1,sticky='E')
+
+#----------------------------------------------------------------#
 
 #-----------Creative Stuff-----------#
 img= ImageTk.PhotoImage(Image.open('logo_final.png'))
 res=tk.Label(master,image=img,width=850,height=800)
 res.grid(row=0,column=25,padx=2,pady=1,sticky="N")
-#---------------------------------------------#
 
+app=FullScreenApp(master)
 
 master.mainloop()
+
 createResume(user_info)
