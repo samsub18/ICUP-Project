@@ -1,5 +1,5 @@
-# ICUP-Project
-Resume
+# RESUMAKER
+
 Hey there tech freaks. Wanna Build an instant resume? Do it within no time using our RESUMAKER program.
 STEPS:
 1. Save all the files in one folder anywhere on your desktop.
